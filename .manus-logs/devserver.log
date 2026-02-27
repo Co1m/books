@@ -6,3 +6,14 @@
 [2026-02-25T15:23:53.892Z] 10:23:53 AM [vite] (client) page reload client/index.html
 [2026-02-25T15:40:30.735Z] 10:40:30 AM [vite] (client) page reload index.html
 [2026-02-25T15:40:30.737Z] 10:40:30 AM [vite] (client) page reload index.html
+[2026-02-27T03:54:10.832Z] Dev server process group stopped
+[2026-02-27T03:54:13.838Z] Starting dev server with command: pnpm run dev
+[2026-02-27T03:54:15.784Z] 
+[2026-02-27T03:54:15.785Z] > books_website@1.0.0 dev /home/ubuntu/books_website
+[2026-02-27T03:54:15.785Z] > vite --host
+[2026-02-27T03:54:15.785Z] 
+[2026-02-27T03:54:21.518Z] 
+[2026-02-27T03:54:21.519Z] VITE v7.1.9  ready in 5335 ms
+[2026-02-27T03:54:21.519Z] 
+[2026-02-27T03:54:21.519Z] ➜  Local:   http://localhost:3000/
+[2026-02-27T03:54:21.519Z] ➜  Network: http://169.254.0.21:3000/

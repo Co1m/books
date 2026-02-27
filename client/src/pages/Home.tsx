@@ -13,9 +13,12 @@ export default function Home() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await fetch("/books.json");
+        // 使用 import.meta.env.BASE_URL 来正确处理基础路径
+        const basePath = import.meta.env.BASE_URL || '/';
+        const booksPath = basePath.endsWith('/') ? basePath + 'books.json' : basePath + '/books.json';
+        const response = await fetch(booksPath);
         if (!response.ok) {
-          throw new Error("Failed to load books");
+          throw new Error(`Failed to load books from ${booksPath}`);
         }
         const data = await response.json();
         setBooks(data);
