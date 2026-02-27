@@ -17,3 +17,11 @@
 [2026-02-27T03:54:21.519Z] 
 [2026-02-27T03:54:21.519Z] ➜  Local:   http://localhost:3000/
 [2026-02-27T03:54:21.519Z] ➜  Network: http://169.254.0.21:3000/
+[2026-02-27T03:56:33.543Z] 10:56:33 PM [vite] vite.config.ts changed, restarting server...
+[2026-02-27T03:56:33.543Z] 10:56:33 PM [vite] (client) page reload index.html
+[2026-02-27T03:56:33.553Z] 10:56:33 PM [vite] (client) Re-optimizing dependencies because vite config has changed
+[2026-02-27T03:56:33.564Z] 10:56:33 PM [vite] server restarted.
+[2026-02-27T03:56:33.565Z] 
+[2026-02-27T03:56:33.565Z] ➜  Local:   http://localhost:5173/
+[2026-02-27T03:56:33.566Z] ➜  Network: http://169.254.0.21:5173/
+[2026-02-27T03:56:33.721Z] 10:56:33 PM [vite] changed tsconfig file detected: /home/ubuntu/books_website/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
