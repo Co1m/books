@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的书单</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { margin: 20px 0; color: #333; }
+        .book-list { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .book-item { padding: 16px; border-bottom: 1px solid #eee; transition: background 0.2s; }
+        .book-item:hover { background: #f9f9f9; }
+        .book-title { font-weight: 600; color: #333; margin-bottom: 4px; }
+        .book-author { color: #666; font-size: 14px; }
+        .stats { color: #999; font-size: 14px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 我的书单</h1>
+        <div class="stats">共 <span id="count">0</span> 本书</div>
+        <div class="book-list" id="bookList"></div>
+    </div>
+
+    <script>
+        // 加载 books.json
+        fetch('/books/books.json')
+            .then(r => r.json())
+            .then(books => {
+                const bookList = document.getElementById('bookList');
+                const count = document.getElementById('count');
+                
+                books.forEach(book => {
+                    const item = document.createElement('div');
+                    item.className = 'book-item';
+                    item.innerHTML = `
+                        <div class="book-title">${book.标题}</div>
+                        <div class="book-author">${book.作者}</div>
+                    `;
+                    bookList.appendChild(item);
+                });
+                
+                count.textContent = books.length;
+            })
+            .catch(e => {
+                console.error('Failed to load books:', e);
+                document.getElementById('bookList').innerHTML = '<div class="book-item"><div class="book-title">加载失败</div></div>';
+            });
+    </script>
+</body>
+</html>
