@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>我的书单</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -15,29 +18,39 @@
         .book-title { font-weight: 600; color: #333; margin-bottom: 4px; }
         .book-author { color: #666; font-size: 14px; }
         .stats { color: #999; font-size: 14px; margin-bottom: 20px; }
+        .loading { text-align: center; padding: 40px; color: #999; }
+        .error { color: #d32f2f; padding: 20px; background: #ffebee; border-radius: 8px; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>📚 我的书单</h1>
         <div class="stats">共 <span id="count">0</span> 本书</div>
-        <div class="book-list" id="bookList"></div>
+        <div id="bookList" class="book-list"><div class="loading">加载中...</div></div>
     </div>
 
     <script>
         // 加载 books.json
-        fetch('/books/books.json')
-            .then(r => r.json())
+        const bookPath = window.location.pathname.includes('/books/') 
+            ? '/books/books.json' 
+            : '/books.json';
+            
+        fetch(bookPath)
+            .then(r => {
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                return r.json();
+            })
             .then(books => {
                 const bookList = document.getElementById('bookList');
                 const count = document.getElementById('count');
                 
+                bookList.innerHTML = '';
                 books.forEach(book => {
                     const item = document.createElement('div');
                     item.className = 'book-item';
                     item.innerHTML = `
-                        <div class="book-title">${book.标题}</div>
-                        <div class="book-author">${book.作者}</div>
+                        <div class="book-title">${book.标题 || book.title || 'N/A'}</div>
+                        <div class="book-author">${book.作者 || book.author || 'Unknown'}</div>
                     `;
                     bookList.appendChild(item);
                 });
@@ -45,8 +58,9 @@
                 count.textContent = books.length;
             })
             .catch(e => {
-                console.error('Failed to load books:', e);
-                document.getElementById('bookList').innerHTML = '<div class="book-item"><div class="book-title">加载失败</div></div>';
+                document.getElementById('bookList').innerHTML = 
+                    '<div class="error">加载失败: ' + e.message + '</div>';
+                console.error('Error:', e);
             });
     </script>
 </body>
